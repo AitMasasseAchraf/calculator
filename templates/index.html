@@ -18,15 +18,23 @@
             color: #333;
             margin-bottom: 20px;
         }
+        .flex-container {
+            display: flex; /* Flexbox for side-by-side containers */
+            gap: 20px; /* Space between the blocks */
+        }
         .container {
             display: grid;
-            grid-template-columns: repeat(10, 60px); /* Increased cell width */
+            grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
             grid-gap: 10px;
             margin: 20px 0;
             background-color: #fff;
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+        }
+        /* Styling for the third block to display one column */
+        .container.single-column {
+            grid-template-columns: 1fr; /* Single column layout */
         }
         .cell {
             display: flex;
@@ -74,76 +82,124 @@
         button:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
+        .warning {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Simple Calculator</h1>
+    {% if warning_20 %}
+    <div class="warning">{{ warning_20 }}</div>
+    {% endif %}
+    {% if warning_90 %}
+    <div class="warning">{{ warning_90 }}</div>
+    {% endif %}
     <form method="POST">
         <input type="number" name="number" min="0" max="36" placeholder="Enter a number">
         <button type="submit" name="action" value="Submit">Submit</button>
         <button type="submit" name="action" value="Clear">Clear</button>
     </form>
-    <div class="container">
-        <div class="cell">6<input type="text" value="{{ fields[6] }}" readonly></div>
-        <div class="cell">5<input type="text" value="{{ fields[5] }}" readonly></div>
-        <div class="cell">0<input type="text" value="{{ fields[0] }}" readonly></div>
-        <div class="cell">1<input type="text" value="{{ fields[1] }}" readonly></div>
-        <div class="cell">2<input type="text" value="{{ fields[2] }}" readonly></div>
-        <div class="cell">3<input type="text" value="{{ fields[3] }}" readonly></div>
-        <div class="cell">4<input type="text" value="{{ fields[4] }}" readonly></div>
-        <div class="cell">7<input type="text" value="{{ fields[7] }}" readonly></div>
-        <div class="cell">8<input type="text" value="{{ fields[8] }}" readonly></div>
-        <div class="cell">9<input type="text" value="{{ fields[9] }}" readonly></div>
+    
+    <!-- Parent flex container to align all blocks side by side -->
+    <div class="flex-container">
+        <div class="container">
+            <div class="cell">6<input type="text" value="{{ fields[6] }}" readonly></div>
+            <div class="cell">5<input type="text" value="{{ fields[5] }}" readonly></div>
+            <div class="cell">0<input type="text" value="{{ fields[0] }}" readonly></div>
+            
+            <div class="cell">16<input type="text" value="{{ fields[16] }}" readonly></div>
+            <div class="cell">15<input type="text" value="{{ fields[15] }}" readonly></div>
+            <div class="cell">10<input type="text" value="{{ fields[10] }}" readonly></div>
 
-        <div class="cell">16<input type="text" value="{{ fields[16] }}" readonly></div>
-        <div class="cell">15<input type="text" value="{{ fields[15] }}" readonly></div>
-        <div class="cell">10<input type="text" value="{{ fields[10] }}" readonly></div>
-        <div class="cell">11<input type="text" value="{{ fields[11] }}" readonly></div>
-        <div class="cell">12<input type="text" value="{{ fields[12] }}" readonly></div>
-        <div class="cell">13<input type="text" value="{{ fields[13] }}" readonly></div>
-        <div class="cell">14<input type="text" value="{{ fields[14] }}" readonly></div>
-        <div class="cell">17<input type="text" value="{{ fields[17] }}" readonly></div>
-        <div class="cell">18<input type="text" value="{{ fields[18] }}" readonly></div>
-        <div class="cell">19<input type="text" value="{{ fields[19] }}" readonly></div>
+            <div class="cell">26<input type="text" value="{{ fields[26] }}" readonly></div>
+            <div class="cell">25<input type="text" value="{{ fields[25] }}" readonly></div>
+            <div class="cell">20<input type="text" value="{{ fields[20] }}" readonly></div>
+            
+            <div class="cell">36<input type="text" value="{{ fields[36] }}" readonly></div>
+            <div class="cell">35<input type="text" value="{{ fields[35] }}" readonly></div>
+            <div class="cell">30<input type="text" value="{{ fields[30] }}" readonly></div>
 
-        <div class="cell">26<input type="text" value="{{ fields[26] }}" readonly></div>
-        <div class="cell">25<input type="text" value="{{ fields[25] }}" readonly></div>
-        <div class="cell">20<input type="text" value="{{ fields[20] }}" readonly></div>
-        <div class="cell">22<input type="text" value="{{ fields[22] }}" readonly></div>
-        <div class="cell">32<input type="text" value="{{ fields[32] }}" readonly></div>
-        <div class="cell">23<input type="text" value="{{ fields[23] }}" readonly></div>
-        <div class="cell">24<input type="text" value="{{ fields[24] }}" readonly></div>
-        <div class="cell">27<input type="text" value="{{ fields[27] }}" readonly></div>
-        <div class="cell">28<input type="text" value="{{ fields[28] }}" readonly></div>
-        <div class="cell">29<input type="text" value="{{ fields[29] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
 
-        <div class="cell">36<input type="text" value="{{ fields[36] }}" readonly></div>
-        <div class="cell">35<input type="text" value="{{ fields[35] }}" readonly></div>
-        <div class="cell">30<input type="text" value="{{ fields[30] }}" readonly></div>
-        <div class="cell">33<input type="text" value="{{ fields[33] }}" readonly></div>
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell">34<input type="text" value="{{ fields[34] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
 
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell">21<input type="text" value="{{ fields[21] }}" readonly></div>
-        <div class="cell"></div> <!-- Empty cell for alignment -->
+            
+        </div>
 
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell"></div> <!-- Empty cell for alignment -->
-        <div class="cell">31<input type="text" value="{{ fields[31] }}" readonly></div>
-        <div class="cell"></div> <!-- Empty cell for alignment -->
+        <div class="container">
+            <div class="cell">1<input type="text" value="{{ fields[1] }}" readonly></div>
+            <div class="cell">2<input type="text" value="{{ fields[2] }}" readonly></div>
+            <div class="cell">3<input type="text" value="{{ fields[3] }}" readonly></div>
+
+            <div class="cell">11<input type="text" value="{{ fields[11] }}" readonly></div>
+            <div class="cell">12<input type="text" value="{{ fields[12] }}" readonly></div>
+            <div class="cell">13<input type="text" value="{{ fields[13] }}" readonly></div>
+
+            <div class="cell">22<input type="text" value="{{ fields[22] }}" readonly></div>
+            <div class="cell">32<input type="text" value="{{ fields[32] }}" readonly></div>
+            <div class="cell">23<input type="text" value="{{ fields[23] }}" readonly></div>
+
+            <div class="cell">33<input type="text" value="{{ fields[33] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            <div class="cell">21<input type="text" value="{{ fields[21] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            <div class="cell">31<input type="text" value="{{ fields[31] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            
+        </div>
+
+        <!-- Third block with a single column layout -->
+        <div class="container single-column">
+            <div class="cell">4<input type="text" value="{{ fields[4] }}" readonly></div>
+            <div class="cell">14<input type="text" value="{{ fields[14] }}" readonly></div>
+            <div class="cell">24<input type="text" value="{{ fields[24] }}" readonly></div>
+            <div class="cell">34<input type="text" value="{{ fields[34] }}" readonly></div>
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            
+
+        </div>
+        <div class="container">
+            <div class="cell">7<input type="text" value="{{ fields[7] }}" readonly></div>
+            <div class="cell">8<input type="text" value="{{ fields[8] }}" readonly></div>
+            <div class="cell">9<input type="text" value="{{ fields[9] }}" readonly></div>
+
+            <div class="cell">17<input type="text" value="{{ fields[17] }}" readonly></div>
+            <div class="cell">18<input type="text" value="{{ fields[18] }}" readonly></div>
+            <div class="cell">19<input type="text" value="{{ fields[19] }}" readonly></div>
+
+            <div class="cell">27<input type="text" value="{{ fields[27] }}" readonly></div>
+            <div class="cell">28<input type="text" value="{{ fields[28] }}" readonly></div>
+            <div class="cell">29<input type="text" value="{{ fields[29] }}" readonly></div>
+
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+            <div class="cell"></div> <!-- Empty cell for alignment -->
+
+            
+
+        </div>
     </div>
 </body>
 </html>

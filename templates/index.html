@@ -97,6 +97,12 @@
     {% if warning_90 %}
     <div class="warning">{{ warning_90 }}</div>
     {% endif %}
+    {% if warning_40 %}
+    <div class="warning">{{ warning_40 }}</div>
+    {% endif %}
+    {% if warning_new_20 %}
+    <div class="warning">{{ warning_new_20 }}</div>
+    {% endif %}
     <form method="POST">
         <input type="number" name="number" min="0" max="36" placeholder="Enter a number">
         <button type="submit" name="action" value="Submit">Submit</button>

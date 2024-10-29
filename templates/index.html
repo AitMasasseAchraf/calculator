@@ -82,27 +82,88 @@
         button:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
-        .warning {
-            color: red;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+        
+        .warning-container {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: 300px; /* Adjust width as needed */
+        max-height: 80vh; /* Set max height relative to viewport */
+        overflow-y: auto; /* Add vertical scrolling */
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    /* Style for individual warnings */
+    .warning {
+        background-color: #f8d7da;
+    color: #721c24;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 3px;
+    font-size: 1.2em; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+    overflow-wrap: break-word;
+    }
+   
     </style>
+    
 </head>
 <body>
     <h1>Simple Calculator</h1>
-    {% if warning_20 %}
-    <div class="warning">{{ warning_20 }}</div>
-    {% endif %}
-    {% if warning_90 %}
-    <div class="warning">{{ warning_90 }}</div>
-    {% endif %}
-    {% if warning_40 %}
-    <div class="warning">{{ warning_40 }}</div>
-    {% endif %}
-    {% if warning_new_20 %}
-    <div class="warning">{{ warning_new_20 }}</div>
-    {% endif %}
+    <div class="warning-container">
+        {% for group, warning in warnings_70.items() %}
+            {% if warning %}
+                <div class="warning" id="warning-{{ group }}">{{ warning }}</div>
+                <script>
+                    // Remove warning after 30 seconds
+                    setTimeout(function() {
+                        document.getElementById("warning-{{ group }}").style.display = "none";
+                    }, 30000); // 30 seconds
+                </script>
+            {% endif %}
+        {% endfor %}
+        
+        {% for group, warning in additional_warnings.items() %}
+            {% if warning %}
+                <div class="warning" id="additional-warning-{{ group }}">{{ warning }}</div>
+                <script>
+                    setTimeout(function() {
+                        document.getElementById("additional-warning-{{ group }}").style.display = "none";
+                    }, 30000); // 30 seconds
+                </script>
+            {% endif %}
+        {% endfor %}
+        
+        {% for group, warning in warnings_50.items() %}
+            {% if warning %}
+                <div class="warning" id="warning-{{ group }}">{{ warning }}</div>
+                <script>
+                    setTimeout(function() {
+                        document.getElementById("warning-{{ group }}").style.display = "none";
+                    }, 30000); // 30 seconds
+                </script>
+            {% endif %}
+        {% endfor %}
+        
+        {% for group, warning in warnings_25.items() %}
+            {% if warning %}
+                <div class="warning" id="warning-{{ group }}">{{ warning }}</div>
+                <script>
+                    setTimeout(function() {
+                        document.getElementById("warning-{{ group }}").style.display = "none";
+                    }, 30000); // 30 seconds
+                </script>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <audio id="warningSound" src="{{ url_for('static', filename='beep-warning-6387.mp3') }}" preload="auto"></audio>
+
     <form method="POST">
         <input type="number" name="number" min="0" max="36" placeholder="Enter a number">
         <button type="submit" name="action" value="Submit">Submit</button>
@@ -135,8 +196,6 @@
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-
-            
         </div>
 
         <div class="container">
@@ -163,8 +222,6 @@
             <div class="cell">31<input type="text" value="{{ fields[31] }}" readonly></div>
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-
-            
         </div>
 
         <!-- Third block with a single column layout -->
@@ -175,9 +232,8 @@
             <div class="cell">34<input type="text" value="{{ fields[34] }}" readonly></div>
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-            
-
         </div>
+        
         <div class="container">
             <div class="cell">7<input type="text" value="{{ fields[7] }}" readonly></div>
             <div class="cell">8<input type="text" value="{{ fields[8] }}" readonly></div>
@@ -194,18 +250,27 @@
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
             <div class="cell"></div> <!-- Empty cell for alignment -->
-
-            
-
         </div>
     </div>
+
+    <!-- <script>
+        function playWarningSound() {
+            var audio = document.getElementById('warningSound');
+            if (audio) { // Check if the audio element exists
+                audio.play().catch(function(error) {
+                    console.error("Audio play failed:", error); // Log if there was an error playing
+                });
+            } else {
+                console.error("Audio element not found"); // Log if audio element is missing
+            }
+        }
+    </script> -->
+        
 </body>
 </html>
